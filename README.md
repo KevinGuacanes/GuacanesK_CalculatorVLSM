@@ -50,10 +50,10 @@ La **Calculadora de Subnetting** es una aplicación móvil que permite a los usu
 
 ## Capturas de Pantalla
 
-![Pantalla principal](ruta/a/imagen.jpg)
+![Pantalla principal](https://drive.google.com/file/d/1qGFukq0TLVAG-rhdqFpmqH6gtW3JVPqf/view?usp=drive_link)
 *Pantalla de inicio de la aplicación.*
 
-![Resultados de redes](ruta/a/imagen2.jpg)
+![Resultados de redes](https://drive.google.com/file/d/1kvMPdDNMVyl5MiFgPk57SbiL2Zrp3Lcw/view?usp=drive_link)
 *Ejemplo de resultados de redes generados.*
 
 ## Autor
