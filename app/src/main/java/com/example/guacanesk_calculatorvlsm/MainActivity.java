@@ -21,7 +21,6 @@ import java.util.Comparator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
     private TextInputEditText editTextIp, editTextMascara, editTextNumRedes;
     private Button btnGenerarCamposRedes, btnCalcular, btnNueva;
     private LinearLayout contenedorRedes;
@@ -71,13 +70,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Generar campos para cada red
-        // Generar campos para cada red
         for (int i = 0; i < numRedes; i++) {
             final int redIndex = i;
-
-            // Contenedor para cada red (horizontal)
             LinearLayout redContainer = new LinearLayout(this);
-            redContainer.setOrientation(LinearLayout.HORIZONTAL);  // Cambié la orientación a horizontal
+            redContainer.setOrientation(LinearLayout.HORIZONTAL);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
@@ -87,17 +83,15 @@ public class MainActivity extends AppCompatActivity {
 
             // Contenedor de la red y su nombre
             LinearLayout leftContainer = new LinearLayout(this);
-            leftContainer.setOrientation(LinearLayout.VERTICAL); // Vertical para nombre de red
+            leftContainer.setOrientation(LinearLayout.VERTICAL);
             leftContainer.setLayoutParams(new LinearLayout.LayoutParams(
-                    0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)); // Ocupa la mitad
+                    0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
 
-            // TextView para mostrar el número de red
             TextView tvRedNum = new TextView(this);
             tvRedNum.setText("Red " + (i + 1));
             tvRedNum.setTextSize(18);
             leftContainer.addView(tvRedNum);
 
-            // Campo para nombre de la red
             TextInputLayout tilNombre = new TextInputLayout(this);
             tilNombre.setHint("Nombre de Red ");
             TextInputEditText etNombre = new TextInputEditText(this);
@@ -109,17 +103,15 @@ public class MainActivity extends AppCompatActivity {
 
             // Contenedor de los hosts
             LinearLayout rightContainer = new LinearLayout(this);
-            rightContainer.setOrientation(LinearLayout.VERTICAL); // Vertical para número de hosts
+            rightContainer.setOrientation(LinearLayout.VERTICAL);
             rightContainer.setLayoutParams(new LinearLayout.LayoutParams(
-                    0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)); // Ocupa la mitad
+                    0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
 
-            // Agregar texto encima del campo de número de hosts
             TextView tvHosts = new TextView(this);
             tvHosts.setText("Número de Hosts");
             tvHosts.setTextSize(18);
             rightContainer.addView(tvHosts);
 
-            // Campo para número de hosts
             TextInputLayout tilHosts = new TextInputLayout(this);
             tilHosts.setHint(" ");
             TextInputEditText etHosts = new TextInputEditText(this);
@@ -130,13 +122,10 @@ public class MainActivity extends AppCompatActivity {
 
             redContainer.addView(rightContainer);
 
-            // Agregar al contenedor principal
             contenedorRedes.addView(redContainer);
 
-            // Almacenar referencia a los campos para acceder después
             redes.add(new Red(etNombre.getId(), etHosts.getId()));
         }
-
     }
 
     private void calcular() {
@@ -149,12 +138,22 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+        // Validación IP
+        if (!esIpValida(ip)) {
+            Toast.makeText(this, "IP inválida", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         int mascara;
         try {
             mascara = Integer.parseInt(mascaraStr);
             if (mascara < 1 || mascara > 32) {
-                Toast.makeText(this, "Máscara debe estar entre 1 y 32", Toast.LENGTH_SHORT).show();
-                return;
+                if (mascara > 32) {
+                    Toast.makeText(this, "La máscara de red no debe ser mayor a 32", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Máscara debe ser entre 1 y 32", Toast.LENGTH_SHORT).show();
+                }
+                return; // Detener el proceso si la máscara es inválida
             }
         } catch (NumberFormatException e) {
             Toast.makeText(this, "Máscara inválida", Toast.LENGTH_SHORT).show();
@@ -205,7 +204,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void reiniciar() {
-        // Limpiar todos los campos y resultados
         editTextIp.setText("");
         editTextMascara.setText("");
         editTextNumRedes.setText("");
@@ -215,6 +213,20 @@ public class MainActivity extends AppCompatActivity {
         redes.clear();
         informacionRedes.clear();
         btnCalcular.setEnabled(true);
+    }
+
+    private boolean esIpValida(String ip) {
+        String[] octetos = ip.split("\\.");
+        if (octetos.length != 4) return false;
+        for (String octeto : octetos) {
+            try {
+                int valor = Integer.parseInt(octeto);
+                if (valor < 0 || valor > 255) return false;
+            } catch (NumberFormatException e) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private List<DireccionIP> subneting(String ip, int mascara, List<RedInfo> redesInfo) {

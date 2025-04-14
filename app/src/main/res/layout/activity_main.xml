@@ -82,7 +82,7 @@
                     android:layout_weight="1"
                     android:layout_marginLeft="8dp"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:hint="1-24"
+                    android:hint="Mascara"
                     app:boxStrokeColor="@color/primary_color"
                     app:hintTextColor="@color/primary_color">
 
