@@ -10,12 +10,6 @@ La **Calculadora de Subnetting** es una aplicación móvil que permite a los usu
 - **Cálculo automático**: Calcula la cantidad de hosts disponibles en cada subred.
 - **Interfaz de usuario limpia y funcional**: Proporciona una interfaz gráfica amigable para la entrada de datos y presentación de resultados.
 
-## Tecnologías Utilizadas
-
-- **Android SDK**: Para el desarrollo de la aplicación móvil.
-- **Java**: Lenguaje de programación para el desarrollo de la lógica y la funcionalidad.
-- **LinearLayout**: Para una disposición flexible y dinámica de los elementos en la pantalla.
-
 ## Instrucciones de Instalación
 
 ### Pasos
