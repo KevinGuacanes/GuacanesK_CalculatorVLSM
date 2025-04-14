@@ -23,14 +23,14 @@ La **Calculadora de Subnetting** es una aplicación móvil que permite a los usu
 1. Clona este repositorio en tu máquina local:
 
     ```bash
-    git clone https://github.com/KevinGuacanes/GuacanesK_CalculatorVLSM
+    git clone https://github.com/KevinGuacanes/GuacanesK_CalculatorVLSM.git
     ```
 
 2. Abre el proyecto en **Android Studio**.
 
 3. Conecta un dispositivo Android o inicia un emulador.
 
-4. Ejecuta el proyecto desde **Android Studio**.
+4. Ejecutar el proyecto desde **Android Studio**.
 
 ## Uso
 
@@ -47,12 +47,6 @@ La **Calculadora de Subnetting** es una aplicación móvil que permite a los usu
    
 4. **Nuevo cálculo**:
     - Si deseas hacer un nuevo cálculo, haz clic en el botón "Nueva" para limpiar los campos.
-
-## Capturas de Pantalla
-
-[![Interfaz](https://i.postimg.cc/zHbyqjZN/Interfaz.png)](https://postimg.cc/zHbyqjZN)
-
-[![Funcionamiento](https://i.postimg.cc/CB6Zy22J/Funcionamiento.png)](https://postimg.cc/CB6Zy22J)
 
 ## Autor
 
