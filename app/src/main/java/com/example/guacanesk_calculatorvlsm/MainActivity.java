@@ -311,6 +311,9 @@ public class MainActivity extends AppCompatActivity {
             tablaResultados.addView(row);
         }
 
+        // Make both the title and scroll view visible
+        findViewById(R.id.tvResultadosTitulo).setVisibility(View.VISIBLE);
+        findViewById(R.id.scrollResultados).setVisibility(View.VISIBLE);
         tablaResultados.setVisibility(View.VISIBLE);
     }
 

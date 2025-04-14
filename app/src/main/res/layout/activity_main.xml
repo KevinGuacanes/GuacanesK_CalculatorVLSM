@@ -3,109 +3,197 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/light_gray">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp"
+        android:padding="24dp"
         tools:context=".MainActivity">
 
-        <TextView
+        <!-- Header -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Calculadora de Subneting"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp" />
+            android:orientation="vertical"
+            android:background="@drawable/header_background"
+            android:padding="16dp"
+            android:layout_marginBottom="24dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:hint="IP (Ejemplo: 192.168.23.0)">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextIp"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:text="Calculadora de Subneting"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                android:textStyle="bold" />
 
-        <com.google.android.material.textfield.TextInputLayout
+        </LinearLayout>
+
+        <!-- Input Section -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:hint="Máscara (1-32)">
+            android:orientation="vertical"
+            android:background="@drawable/input_section_background"
+            android:padding="16dp"
+            android:layout_marginBottom="24dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextMascara"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:text="Configuración de Red"
+                android:textColor="@color/primary_color"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:hint="Número de Redes">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextNumRedes"
+            <!-- IP and Mask in one row -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
 
-        <Button
-            android:id="@+id/btnGenerarCamposRedes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Generar Campos de Redes" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:hint="Dirección IP"
+                    app:boxStrokeColor="@color/primary_color"
+                    app:hintTextColor="@color/primary_color">
 
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextIp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number|numberDecimal|phone"
+                        android:digits="0123456789."
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:hint="1-24"
+                    app:boxStrokeColor="@color/primary_color"
+                    app:hintTextColor="@color/primary_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextMascara"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Número de Redes"
+                app:boxStrokeColor="@color/primary_color"
+                app:hintTextColor="@color/primary_color">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextNumRedes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnGenerarCamposRedes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Generar Campos de Redes"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                app:strokeColor="@color/primary_color"
+                app:strokeWidth="1dp"
+                app:backgroundTint="@android:color/transparent"
+                android:textColor="@color/primary_color" />
+        </LinearLayout>
+
+        <!-- Networks Container -->
         <LinearLayout
             android:id="@+id/contenedorRedes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="16dp" />
+            android:layout_marginBottom="16dp" />
 
-        <Button
-            android:id="@+id/btnCalcular"
+        <!-- Action Buttons -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Calcular" />
+            android:orientation="horizontal"
+            android:layout_marginBottom="24dp">
 
-        <Button
-            android:id="@+id/btnNueva"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCalcular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Calcular"
+                style="@style/Widget.MaterialComponents.Button"
+                app:backgroundTint="@color/primary_color" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnNueva"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="8dp"
+                android:text="Nueva"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                app:strokeColor="@color/primary_color"
+                app:strokeWidth="1dp"
+                app:backgroundTint="@android:color/transparent"
+                android:textColor="@color/primary_color" />
+        </LinearLayout>
+
+        <!-- Results Table -->
+        <TextView
+            android:id="@+id/tvResultadosTitulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Nueva" />
+            android:text="Resultados"
+            android:textColor="@color/primary_color"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:layout_marginBottom="8dp" />
 
-        <!-- HorizontalScrollView para permitir el desplazamiento horizontal de la tabla -->
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:visibility="gone"
+            android:id="@+id/scrollResultados">
 
             <TableLayout
                 android:id="@+id/tablaResultados"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:stretchColumns="*"
-                android:visibility="gone" />
+                android:stretchColumns="*" />
         </HorizontalScrollView>
 
+        <!-- Footer -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Kevin Guacanes - Aplicaciones Moviles"
+            android:text="Kevin Guacanes - Aplicaciones Móviles"
             android:textAlignment="center"
+            android:textColor="@color/gray"
             android:layout_marginTop="24dp" />
 
     </LinearLayout>
